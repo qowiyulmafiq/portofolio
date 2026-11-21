@@ -1,0 +1,139 @@
+@import 'tailwindcss';
+@import '@fontsource/anton/latin-400.css';
+@import '@fontsource-variable/jetbrains-mono';
+
+@theme {
+	--color-canvas: #f4f4f4;
+	--color-surface: #ffffff;
+	--color-ink: #111111;
+	--color-cobalt: #0033cc;
+	--color-industrial: #ffcc00;
+
+	--font-display: 'Anton', 'Arial Narrow', sans-serif;
+	--font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
+
+	--shadow-brutal: 4px 4px 0 0 #111111;
+	--shadow-brutal-sm: 3px 3px 0 0 #111111;
+	--shadow-brutal-xs: 2px 2px 0 0 #111111;
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		@apply bg-canvas font-mono text-ink antialiased;
+		background-image: url('/assets/cream-paper.png');
+		background-repeat: repeat;
+	}
+
+	h1,
+	h2,
+	h3 {
+		@apply font-display uppercase leading-[1.05] text-balance;
+	}
+
+	p {
+		@apply max-w-[62ch] leading-relaxed;
+	}
+
+	:focus-visible {
+		outline: 3px solid var(--color-ink);
+		outline-offset: 3px;
+	}
+
+	::selection {
+		background: var(--color-industrial);
+		color: var(--color-ink);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+@utility brutal-card {
+	border: 2px solid var(--color-ink);
+	border-radius: 0;
+	background-color: var(--color-surface);
+	box-shadow: var(--shadow-brutal);
+}
+
+@utility brutal-badge {
+	display: inline-block;
+	border: 2px solid var(--color-ink);
+	border-radius: 0;
+	background-color: var(--color-industrial);
+	color: var(--color-ink);
+	padding: 0.25rem 0.75rem;
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	box-shadow: var(--shadow-brutal-xs);
+}
+
+@utility brutal-press {
+	transition:
+		transform 150ms,
+		box-shadow 150ms;
+
+	&:hover {
+		transform: translate(-2px, -2px);
+	}
+
+	&:active {
+		transform: translate(3px, 3px);
+		box-shadow: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+
+		&:hover,
+		&:active {
+			transform: none;
+		}
+	}
+}
+
+@utility brutal-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	border: 2px solid var(--color-ink);
+	border-radius: 0;
+	padding: 0.75rem 1.25rem;
+	font-family: var(--font-mono);
+	font-size: 0.875rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	box-shadow: var(--shadow-brutal-sm);
+	transition:
+		transform 150ms,
+		box-shadow 150ms;
+
+	&:hover {
+		transform: translate(-2px, -2px);
+	}
+
+	&:active {
+		transform: translate(3px, 3px);
+		box-shadow: none;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+
+		&:hover,
+		&:active {
+			transform: none;
+		}
+	}
+}
