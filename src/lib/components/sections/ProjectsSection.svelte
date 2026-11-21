@@ -2,6 +2,7 @@
 	import ArrowLeft from '@lucide/svelte/icons/arrow-left';
 	import ArrowRight from '@lucide/svelte/icons/arrow-right';
 	import ArrowUpRight from '@lucide/svelte/icons/arrow-up-right';
+	import { asset, resolve } from '$app/paths';
 	import Badge from '#lib/components/ui/Badge.svelte';
 	import BrutalButton from '#lib/components/ui/BrutalButton.svelte';
 	import SectionHeading from '#lib/components/ui/SectionHeading.svelte';
@@ -22,6 +23,14 @@
 	const canNavigate = $derived(total > 1);
 
 	const pad = (value: number) => String(value).padStart(2, '0');
+
+	// Route IDs are generated from the filesystem, so resolve() needs a cast for
+	// data-driven links that may point at a future internal page.
+	const resolvePathname = resolve as (pathname: string) => string;
+
+	function detailsHref(url: string): string {
+		return url.startsWith('/') ? resolvePathname(url) : url;
+	}
 
 	$effect(() => {
 		if (total > 0 && index >= total) index = 0;
@@ -48,7 +57,7 @@
 			{#if current.image}
 				<div class="aspect-[21/9] max-h-56 overflow-hidden border-b-2 border-ink bg-canvas">
 					<img
-						src={current.image}
+						src={asset(current.image)}
 						alt={current.imageAlt ?? current.title}
 						width="1600"
 						height="1000"
@@ -113,7 +122,7 @@
 
 				{#if current.detailsUrl}
 					<div>
-						<BrutalButton href={current.detailsUrl} variant="cobalt">
+						<BrutalButton href={detailsHref(current.detailsUrl)} variant="cobalt">
 							VIEW DETAILS
 							<ArrowUpRight size={16} strokeWidth={2.5} aria-hidden="true" />
 						</BrutalButton>

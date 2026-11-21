@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { asset } from '$app/paths';
 	import type { SiteConfig } from '#lib/data/types';
 
 	interface Props {
@@ -10,7 +11,7 @@
 
 <figure class="brutal-card overflow-hidden border-2 border-ink bg-surface p-0">
 	<img
-		src={profile.photo}
+		src={asset(profile.photo)}
 		alt={profile.photoAlt}
 		width="1192"
 		height="1192"

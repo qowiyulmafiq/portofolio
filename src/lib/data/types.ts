@@ -1,3 +1,5 @@
+import type { AssetPath } from '$app/types';
+
 export type IconKey =
 	| 'flutter'
 	| 'laravel'
@@ -65,7 +67,7 @@ export interface SiteConfig {
 	readonly hero: HeroContent;
 	readonly about: AboutContent;
 	readonly tagline: string;
-	readonly photo: string;
+	readonly photo: AssetPath;
 	readonly photoAlt: string;
 	readonly status: readonly StatusItem[];
 	readonly socials: readonly SocialLink[];
@@ -92,7 +94,7 @@ export interface Project {
 	readonly title: string;
 	readonly category: ProjectCategory;
 	readonly description: string;
-	readonly image?: string;
+	readonly image?: AssetPath;
 	readonly imageAlt?: string;
 	readonly detailsUrl?: string;
 	readonly stack?: readonly string[];

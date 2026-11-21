@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { asset } from '$app/paths';
 	import Container from '#lib/components/layout/Container.svelte';
 	import AboutSection from '#lib/components/sections/AboutSection.svelte';
 	import HeroSection from '#lib/components/sections/HeroSection.svelte';
@@ -9,6 +10,8 @@
 	import StatusCard from '#lib/components/sidebar/StatusCard.svelte';
 	import SectionDivider from '#lib/components/ui/SectionDivider.svelte';
 	import { site } from '#lib/data/index';
+
+	const photo = asset(site.photo);
 </script>
 
 <svelte:head>
@@ -19,7 +22,7 @@
 	<meta property="og:site_name" content={site.brand} />
 	<meta property="og:title" content={site.title} />
 	<meta property="og:description" content={site.description} />
-	<meta property="og:image" content={site.photo} />
+	<meta property="og:image" content={photo} />
 	<meta property="og:image:type" content="image/jpeg" />
 	<meta property="og:image:width" content="1192" />
 	<meta property="og:image:height" content="1192" />
@@ -27,7 +30,7 @@
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:title" content={site.title} />
 	<meta name="twitter:description" content={site.description} />
-	<meta name="twitter:image" content={site.photo} />
+	<meta name="twitter:image" content={photo} />
 	<meta name="twitter:image:alt" content={site.photoAlt} />
 </svelte:head>
 

@@ -34,7 +34,7 @@ export const site = {
       "Full-stack web systems, cross-platform mobile apps, and applied machine learning.",
   },
   tagline: "FULL-STACK & AI ENTHUSIAST",
-  photo: "/assets/qowiyul.jpeg",
+  photo: "assets/qowiyul.jpeg",
   photoAlt: "Muhammad Qowiyul Mafiq",
   status: [
     { label: "LOCATION", value: "Gresik, Indonesia." },
