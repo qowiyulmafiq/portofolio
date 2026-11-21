@@ -4,13 +4,8 @@ import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig, loadEnv } from "vite";
 
 export default defineConfig(({ command, mode }) => {
-  // GitHub Pages project sites are served from /<repository-name>. The deploy
-  // workflow sets BASE_PATH from the repository name so the two always match.
-  const env = loadEnv(mode, ".", "BASE_PATH");
-  const base =
-    command === "serve"
-      ? ""
-      : ((env.BASE_PATH || "/portofolio") as `/${string}`);
+  const env = loadEnv(mode, ".", "");
+  const isVercel = env.VERCEL === "1";
 
   return {
     plugins: [
@@ -29,7 +24,7 @@ export default defineConfig(({ command, mode }) => {
           strict: true,
         }),
         paths: {
-          base,
+          base: command === "serve" || isVercel ? "" : "/portofolio",
         },
       }),
     ],
